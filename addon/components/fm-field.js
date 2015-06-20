@@ -29,7 +29,7 @@ export default Ember.Component.extend({
   label: null,
   classNameBindings: ['wrapperClass', 'errorClass'],
   errorClass: Ember.computed('errors', 'showErrors', function() {
-    if(this.get('errors')) {
+    if(this.get('errors') && this.get('showErrors') || this.get('parentView.showErrors')) {
       return this.fmconfig.errorClass;
     }
   }),
