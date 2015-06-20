@@ -1,13 +1,9 @@
 import Ember from 'ember';
+import Errorable from 'ember-form-master-2000/mixins/errorable';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Errorable, {
   layoutName: 'components/ember-form-master-2000/fm-radio-group',
   classNameBindings: ['radioGroupWrapperClass', 'errorClass'],
-  errorClass: Ember.computed('errors', 'showErrors', function() {
-    if(this.get('errors') && this.get('showErrors') || this.get('parentView.showErrors')) {
-      return this.fmconfig.errorClass;
-    }
-  }),
   radioGroupWrapperClass: Ember.computed(function() {
     return this.fmconfig.radioGroupWrapperClass;
   }),

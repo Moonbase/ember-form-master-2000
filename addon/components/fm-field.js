@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import Errorable from 'ember-form-master-2000/mixins/errorable';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(Errorable, {
   layoutName: 'components/ember-form-master-2000/fm-field',
   init: function() {
     if(!this.get('optionValuePath')) {
@@ -28,11 +29,6 @@ export default Ember.Component.extend({
   placeholder: null,
   label: null,
   classNameBindings: ['wrapperClass', 'errorClass'],
-  errorClass: Ember.computed('errors', 'showErrors', function() {
-    if(this.get('errors') && this.get('showErrors') || this.get('parentView.showErrors')) {
-      return this.fmconfig.errorClass;
-    }
-  }),
   isSelect: Ember.computed('type', function() {
     return this.get('type') === 'select';
   }),

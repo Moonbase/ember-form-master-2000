@@ -1,13 +1,10 @@
 import Ember from 'ember';
-export default Ember.Component.extend({
+import Errorable from 'ember-form-master-2000/mixins/errorable';
+
+export default Ember.Component.extend(Errorable, {
   layoutName: 'components/ember-form-master-2000/fm-checkbox',
   classNameBindings: ['checkboxWrapperClass', 'errorClass'],
   checkboxWrapperClass: Ember.computed(function() {
     return this.fmconfig.checkboxWrapperClass;
-  }),
-  errorClass: Ember.computed('errors', 'showErrors', function() {
-    if(this.get('errors') && this.get('showErrors') || this.get('parentView.showErrors')) {
-      return this.fmconfig.errorClass;
-    }
   })
 });
