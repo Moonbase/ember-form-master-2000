@@ -28,35 +28,35 @@ export default Ember.Component.extend({
   placeholder: null,
   label: null,
   classNameBindings: ['wrapperClass', 'errorClass'],
-  errorClass: function() {
-    if(this.get('errors') && this.get('showErrors')) {
+  errorClass: Ember.computed('errors', 'showErrors', function() {
+    if(this.get('errors')) {
       return this.fmconfig.errorClass;
     }
-  }.property('errors', 'showErrors'),
-  isSelect: function() {
+  }),
+  isSelect: Ember.computed('type', function() {
     return this.get('type') === 'select';
-  }.property('type'),
-  isTextarea: function() {
+  }),
+  isTextarea: Ember.computed('type', function() {
     return this.get('type') === 'textarea';
-  }.property('type'),
-  isBasicInput: function() {
+  }),
+  isBasicInput: Ember.computed('type', function() {
     return (!this.get('isSelect') && !this.get('isTextarea'));
-  }.property('type'),
-  forAttribute: function() {
+  }),
+  forAttribute: Ember.computed('label', 'id', function() {
     if(this.get('id')) {
       return this.generateSafeId(this.get('id'));
     }
     if(this.get('label')) {
       return this.generateSafeId(this.get('label'));
     }
-  }.property('label', 'id'),
+  },
 
-  validate: function() {
+  validate: Ember.observer('parentView.validate', function() {
     if(this.get('validate') === 'delay' || this.get('parentView.validate') === 'delay') {
       this.set('showErrors', false);
     }
     console.log(this.get('showErrors'));
-  }.observes('parentView.validate'),
+  },
 
   generateSafeId: function(id) {
     var tmp = document.createElement("DIV");
