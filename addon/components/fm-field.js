@@ -49,14 +49,14 @@ export default Ember.Component.extend({
     if(this.get('label')) {
       return this.generateSafeId(this.get('label'));
     }
-  },
+  }),
 
   validate: Ember.observer('parentView.validate', function() {
     if(this.get('validate') === 'delay' || this.get('parentView.validate') === 'delay') {
       this.set('showErrors', false);
     }
     console.log(this.get('showErrors'));
-  },
+  }),
 
   generateSafeId: function(id) {
     var tmp = document.createElement("DIV");
