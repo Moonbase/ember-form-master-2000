@@ -10,7 +10,7 @@ export default Ember.Component.extend(Errorable, {
     if(!this.get('optionLabelPath')) {
       this.set('optionLabelPath', 'content.label');
     }
-    var dataAttributes = Ember.keys(this).filter(function(attr) {
+    var dataAttributes = Object.keys(this).filter(function(attr) {
       return /data-/.test(attr);
     });
     if(this.get('validate') === 'delay' || this.get('parentView.validate') === 'delay') {
